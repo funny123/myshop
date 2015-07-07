@@ -7,9 +7,20 @@ function connect(){
 }
 //
 // insert into tb_admin(a,b,c)values('a','b','c');
-$arr=array('a'=>'a','b'=>'b','c'=>'c');
-print_r(array_keys($arr));
+// 'a','b','c'
+$arr=array(a=>'a',b=>'b',c=>'c');
+$keys=join(',',array_keys($arr));
+// echo $vals="'".join("','",array_values($arr))."'";
 function insert($table,$arr){
-	$keys=array_keys($arr);
-	//$vals=
+	$keys=join(',',array_keys($arr));
+	$vals="'".join("','",array_values($arr))."'";
+	$sql="insert into {$table}($keys) values({$vals})";
+// 	echo $sql;
+    mysql_query($sql);
+    return mysql_insert_id();
 }
+//
+function update($table,$arr){
+	
+}
+insert('tb_admin',$arr);
